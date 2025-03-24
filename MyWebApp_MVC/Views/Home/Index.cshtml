@@ -1,0 +1,38 @@
+﻿@model List<FileDetail>
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="row">
+    <h3>All File Details</h3>    
+</div>
+
+<div class="row">
+    <div class="col-md-12">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">FileName</th>
+                    <th scope="col">CorrelationId</th>
+                    <th scope="col">FileType</th>
+                    <th scope="col">FileCreateBy</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach(var file in Model)
+                {
+                    <tr>
+                        <td scope="col">@file.FileId</td>
+                        <td scope="col">@file.FileName</td>
+                        <td scope="col">@file.CorelationId</td>
+                        <td scope="col">@file.FileType</td>
+                        <td scope="col">@file.FileCraetedBy</td>
+                    </tr>
+                }
+                
+            </tbody>
+        </table>
+
+    </div>
+</div>
