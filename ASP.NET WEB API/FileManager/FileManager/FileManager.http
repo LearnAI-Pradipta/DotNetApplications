@@ -4,3 +4,22 @@ GET {{FileManager_HostAddress}}/weatherforecast/
 Accept: application/json
 
 ###
+
+GET {{FileManager_HostAddress}}/api/FileApi/
+Accept: application/json
+
+###
+
+GET {{FileManager_HostAddress}}/api/FileApi/1B7301B4-10F5-431C-80C5-2C6DA6AA3C56
+Accept: application/json
+
+
+###
+
+
+POST
+
+
+
+
+
