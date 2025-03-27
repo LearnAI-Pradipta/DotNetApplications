@@ -1,6 +1,7 @@
 ﻿using FileManager.Context;
 using FileManager.Models;
 using FileManager.Repository;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -8,6 +9,7 @@ namespace FileManager.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class FileApiController : ControllerBase
     {
         private readonly DbFileApiRepository _dbFileApiRepository;
