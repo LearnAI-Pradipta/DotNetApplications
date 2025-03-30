@@ -1,7 +1,7 @@
 Class FileNotification
 {
     NotificationFactory nf = new NotificationFactory();
-    var object  = nf.GetNotificationObject("Email")
+    INotification object  = nf.GetNotificationObject("Email")
     object.SendNotification();
 
 }

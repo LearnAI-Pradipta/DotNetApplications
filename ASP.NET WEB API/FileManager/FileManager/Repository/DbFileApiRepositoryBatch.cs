@@ -6,11 +6,11 @@ using Microsoft.EntityFrameworkCore;
 
 namespace FileManager.Repository
 {
-    public class DbFileApiRepository : IDbFileApiRepository
+    public class DbFileApiRepositoryBatch : IDbFileApiRepository
     {
-        private readonly FileApiContext _fileApiContext;
+        private readonly FileApiContextBatch _fileApiContext;
 
-        public DbFileApiRepository(FileApiContext fileApiContext) 
+        public DbFileApiRepositoryBatch(FileApiContextBatch fileApiContext) 
         {
             _fileApiContext = fileApiContext;
         }

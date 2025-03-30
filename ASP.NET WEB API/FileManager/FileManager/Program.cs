@@ -1,5 +1,6 @@
 using FileManager.ApiValidate.Service;
 using FileManager.Context;
+using FileManager.Interface;
 using FileManager.Repository;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
@@ -37,7 +38,8 @@ builder.Services.AddSwaggerGen(options =>
     });
 });
 builder.Services.AddDbContext<FileApiContext>();
-builder.Services.AddScoped<DbFileApiRepository>();
+builder.Services.AddDbContext<FileApiContextBatch>();
+builder.Services.AddScoped<IDbFileApiRepository, DbFileApiRepository>();
 builder.Services.AddScoped<JwtService>();
 builder.Services.AddAuthentication(options =>
 {
@@ -56,6 +58,7 @@ builder.Services.AddAuthentication(options =>
         ValidateIssuer = true,
         ValidateAudience = true,
         ValidateLifetime = true,
+        ClockSkew = TimeSpan.Zero,
         ValidateIssuerSigningKey = true
     };
 });

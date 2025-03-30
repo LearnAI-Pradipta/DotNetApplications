@@ -1,45 +1,55 @@
-Class FileNotification
+class RealDbContext : DbContext
 {
-    private INotification _notification;
-    FileNotification(INotification notification)
+    //Pointing to Real Db
+}
+
+class MockDbContext : DbContext
+{
+    //Pointing to Real Db
+}
+
+
+
+//Repository Interface
+interface IDbRepository
+{
+    void GetData();
+}
+
+
+Class RealDbRepository : IDbRepository
+{
+    private RealDbContext _dbContext;
+    FileNotification(RealDbContext dbContext)
     {
-        _notification = notification;
+    _dbContext = dbContext;
     }
-    public void SendFileNotification()
+    public void GetData()
     {
-        _notification.SendNotification()
+        _dbContext.GetData()
     }
 
 }
 
 
 
-Class SmsNotification() : INotification
+Class MockDbRepository : IDbRepository
 {
-    public void SendNotification()
+    private MockDbContext _dbContext;
+    FileNotification(MockDbContext dbContext)
     {
-        /// Sending Notification Via SMS
+        _dbContext = dbContext;
+    }
+    public void GetData()
+    {
+        _dbContext.GetData()
     }
 
 }
 
 
-
-Class EmailNotification() : INotification
-{
-    public void SendNotification()
-    {
-        /// Sending Notification Via Email
-    }
-}
-
-
-interface INotification 
-{
-    void SendNotification();
-}
 
 
 // We are injecting Dependency Injecttion 
 //program.cs
-builder.service.AddScoped(INotification, SmsNotification);
+builder.service.AddScoped(IDbRepository, MockDbContext);
