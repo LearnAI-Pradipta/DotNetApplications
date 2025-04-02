@@ -10,65 +10,78 @@ namespace TaskLibrery_Implementation
 {
     public class TaskImplemenation
     {
-        public void CallMethod()
+        public async Task CallMethod()
         {
             Console.WriteLine("Task Implementation started!");           
 
             var st = Stopwatch.StartNew();
             //Calling both methods parallelly. Two Threads will be created. Hence ShortRunningFunction will finish before LongRunningFunction
-            var task1  = Task.Run(() => { LongRunningFunction(); });
-            var task2 = Task.Run(() => { ShortRunningFunction(); });
-            var task3 = Task.Run(() => { FastRunningFunction(); });
+            //var task1  = Task.Run(() => { LongRunningFunction(); });
+            //var task2 = Task.Run(() => { ShortRunningFunction(); });
+            //var task3 = Task.Run(() => { FastRunningFunction(); });
 
-            var task4 = Task.Run(() => {
-                LongRunningFunction();
-                FastRunningFunction(); 
+            //var task4 = Task.Run(() => {
+            //    LongRunningFunction();
+            //    FastRunningFunction(); 
+
+            //});
+
+            List<Task> tasks = new List<Task>();
+            tasks.Add(Task.Run(() => LongRunningFunction()));
+            tasks.Add(Task.Run(() => ShortRunningFunction()));
+            tasks.Add(Task.Run(() => FastRunningFunction()));
+
+            Task.WhenAll(tasks);
+
+            Console.WriteLine("Fisrt part finished");
             
-            });
+            var task1 = Task.Run(() => LongRunningFunction());
+            var task2 = Task.Run(() => ShortRunningFunction());
+            var task3 = Task.Run(() => FastRunningFunction());
+
+            //
+            Task.WaitAll(task1, task2, task3);
+            
+
+            int a3 = task3.Result;
+            int a2 = task2.Result;
+            int a1 = task1.Result;
+
+            Console.WriteLine("Second part finished");
+
+            Task.Run(() => FastRunningFunction());
 
 
-
-            task4.GetAwaiter().GetResult();
-
-
+            // Console.WriteLine($"Result1 :{res1} and Result2 : {res2}");
             ////Calling both methods parallelly. Two Threads will be created. Hence ShortRunningFunction will finish before LongRunningFunction
             //Task.Run(() => { LongRunningFunction(); });
             //Task.Run(() => { ShortRunningFunction(); });
+
+
+            Parallel.For(0, 9, i =>
+            {
+                Console.WriteLine($"Task {i} started.");
+                Task.Delay(1000).Wait();
+                Console.WriteLine($"Task {i} completed.");
+            });
+
+            Parallel.ForEach(tasks, t =>
+            {
+                Console.WriteLine($"Task {t} started.");
+                Task.Delay(1000).Wait();
+                Console.WriteLine($"Task {t} completed.");
+            });
 
             st.Stop();
             Console.WriteLine($"Total Time Elapsed :{st.ElapsedMilliseconds}");
             Console.ReadLine();
         }
 
-        //public int LongRunningFunction()
-        //{
-        //    // A Long running function
-        //    Thread.Sleep(5000);
-        //    Console.WriteLine("LongRunningFunction Finished!!!");
-        //    return 1;
-        //}
-
-        //public int ShortRunningFunction()
-        //{
-        //    // A Short running function
-        //    Thread.Sleep(2000);
-        //    Console.WriteLine("ShortRunningFunction Finished!!!");
-        //    return 2;
-        //}
-
-        //public int FastRunningFunction()
-        //{
-        //    // A Short running function            
-        //    Console.WriteLine("FastRunningFunction Finished!!!");
-        //    return 3;
-        //}
-
-
-
+      
         public int LongRunningFunction()
         {
             // A Long running function
-            Task.Delay(5000);
+            Task.Delay(6000);
             Console.WriteLine("LongRunningFunction Finished!!!");
             return 1;
         }

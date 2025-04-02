@@ -2,10 +2,21 @@
 using System.Diagnostics;
 using TaskLibrery_Implementation;
 
-//TaskImplemenation taskImplemenation = new TaskImplemenation();
-//taskImplemenation.CallMethod();
+TaskImplemenation taskImplemenation = new TaskImplemenation();
+await taskImplemenation.CallMethod();
 
 
+
+
+
+
+
+
+
+
+
+
+/////////////////////////////////////////////////////////
 ArrayClass  a = new ArrayClass();
 ListClass listClass = new ListClass();
 
@@ -40,7 +51,7 @@ int[] param4 = { 2, 7, 11, 15,17,15,2 };
 
 //int res4 = listClass.FisrtOccuranceOfString("as", "sadbutsad");
 
-int[] res5 = listClass.MergeTwoSortedArray(param2, param3);
+//int[] res5 = listClass.MergeTwoSortedArray(param2, param3);
 
 
 ////// Calling ASP.NET Core Web api using HttpClient 
