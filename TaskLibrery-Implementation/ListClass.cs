@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -7,8 +8,56 @@ using System.Threading.Tasks;
 
 namespace TaskLibrery_Implementation
 {
+
+    public static class StringExtension
+    {
+        public static string ToUpperAndExclamation(this string str)
+        {
+            return str.ToUpper() + "!!";
+        }
+    }
+
+
+    public class ListNode
+    {
+        public int val;
+        public ListNode next;
+        public ListNode(int val = 0, ListNode next = null)
+        {
+            this.val = val;
+            this.next = next;
+        }
+    }
     public class ListClass
     {
+
+        public int[] TwoSum(int[] nums, int target)
+        {
+            // Create a dictionary to store numbers and their indices
+            Dictionary<int, int> map = new Dictionary<int, int>();
+
+            // Iterate through the array
+            for (int i = 0; i < nums.Length; i++)
+            {
+                // Calculate the complement needed to reach the target
+                int complement = target - nums[i];
+                
+
+                // Check if the complement exists in the dictionary
+                if (map.TryGetValue(complement, out int index))
+                {
+                    // Return the indices of the current number and its complement
+                    return new int[] { index, i };
+                }
+
+                // Add the current number and its index to the dictionary
+                map[nums[i]] = i;
+            }
+
+            // Return an empty array if no solution is found (this won't happen as per the problem constraints)
+            return Array.Empty<int>();
+        }
+
         public List<int> IdentifyIndex(List<int> nums, int target)
         {
             List<int> result = new List<int>();
@@ -29,6 +78,13 @@ namespace TaskLibrery_Implementation
 
         }
 
+
+        //Input: x = 121
+        //Output: true
+        //Input: x = -121
+        //Output: false
+        //Input: x = 10
+        //Output: false
         public bool isPalindrome(int x)
         {
             if (x < 0 && (x % 10 == 0 && x != 0))
@@ -65,6 +121,9 @@ namespace TaskLibrery_Implementation
                 {'M', 1000 }
             };
 
+
+
+            
             //111
             //III = 3
             //XXX = 30
@@ -82,7 +141,7 @@ namespace TaskLibrery_Implementation
             {
                 if ((i != str.Length - 1) && romanKVPair[str[i]] < romanKVPair[str[i + 1]])
                 {
-                    result += -romanKVPair[str[i]];
+                    result -= romanKVPair[str[i]];
                 }
                 else
                 {
@@ -98,6 +157,7 @@ namespace TaskLibrery_Implementation
 
         public string LongestPrefix(string[] strArray)
         {
+            
             string baseStr = strArray[0];
 
             for (int i = 1; i < strArray.Length; i++)
@@ -108,12 +168,10 @@ namespace TaskLibrery_Implementation
 
                     if (baseStr.Length == 0)
                         return "";
-                }
-
-                return baseStr;
+                }               
             }
 
-            return "";
+            return baseStr.ToUpperAndExclamation();
 
         }
 
@@ -206,9 +264,7 @@ namespace TaskLibrery_Implementation
             int[] resArray = new int[arr1.Length+arr2.Length];
 
             int i = 0;
-            int j= 0;
-
-          
+            int j= 0;          
 
             for(int ind = 0; ind < resArray.Length; ind++)
             {
@@ -240,17 +296,75 @@ namespace TaskLibrery_Implementation
             return resArray;
         }
 
+        //Input: "Hello World" → Output: 5
 
-    }
+        //Input: " fly me to the moon " → Output: 4
 
-    public class ListNode
-    {
-        public int val;
-        public ListNode next;
-        public ListNode(int val = 0, ListNode next = null)
+        //Input: "luffy is still joyboy" → Output: 6
+        public int LengthOfLastWord(string str)
         {
-            this.val = val;
-            this.next = next;
+            string[] strArray = str.Trim().Split(" ");
+            int lastIndex = strArray.Length - 1;
+            int lastWordLength = strArray[lastIndex].Length;
+            return lastWordLength;
         }
+
+        //digits = [4,3,2,1]
+        //Output: [4,3,2,2]
+        //Input: digits = [119]
+        //Output: [1,2,0]
+        //Input: digits = [999]
+        //Output: [1,0,0,0]
+
+        public int[] PlusOne(int[] arr)
+        {
+            int arrLength = arr.Length;
+
+            for(int i= arrLength-1; i>=0;i--)
+            {
+                if (arr[i] <9)
+                {
+                    arr[i]++;
+                    return arr;
+                }
+                else
+                {
+                    arr[i] = 0;
+                }
+            }
+
+            int[] res = new int[arrLength + 1];
+            res[0] = 1;
+            return res;
+        }
+
+
+        public LinkedListNode<int> RemoveDuplicatesSortedList(LinkedListNode<int> head)
+        {           
+
+            if (head == null) return null;
+
+            LinkedListNode<int> current = head;
+
+            while (current != null)
+            {
+                if(current.Value == current.Next.Value)
+                {
+                    current = current.Next;
+                }
+                else
+                {
+                    current = current.Next;
+                }
+            }
+
+            return head;
+        }
+
+
+
+
     }
+
+    
 }

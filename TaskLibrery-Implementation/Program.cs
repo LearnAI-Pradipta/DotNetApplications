@@ -2,8 +2,8 @@
 using System.Diagnostics;
 using TaskLibrery_Implementation;
 
-TaskImplemenation taskImplemenation = new TaskImplemenation();
-await taskImplemenation.CallMethod();
+//TaskImplemenation taskImplemenation = new TaskImplemenation();
+//await taskImplemenation.CallMethod();
 
 
 
@@ -40,6 +40,9 @@ int[] param4 = { 2, 7, 11, 15,17,15,2 };
 
 //List<int> listRes = listClass.IdentifyIndex(listParam, 26);
 
+//int[] ints = listClass.TwoSum(param3, 13);
+
+string match = listClass.LongestPrefix(new string[] { "flower", "flow", "flight" });
 
 //bool resbool = listClass.isPalindrome(121);
 
@@ -52,6 +55,17 @@ int[] param4 = { 2, 7, 11, 15,17,15,2 };
 //int res4 = listClass.FisrtOccuranceOfString("as", "sadbutsad");
 
 //int[] res5 = listClass.MergeTwoSortedArray(param2, param3);
+
+//int res6 = listClass.LengthOfLastWord("   fly me   to   the moon  ");
+LinkedList<int> list = new LinkedList<int>();
+LinkedListNode<int> ints1 = new LinkedListNode<int>(1);
+LinkedListNode<int> ints2 = new LinkedListNode<int>(1);
+LinkedListNode<int> ints3 = new LinkedListNode<int>(2);
+list.AddFirst(ints1);
+list.AddFirst(ints2);
+list.AddFirst(ints3);
+
+
 
 
 ////// Calling ASP.NET Core Web api using HttpClient 

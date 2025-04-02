@@ -72,6 +72,13 @@ namespace TaskLibrery_Implementation
                 Console.WriteLine($"Task {t} completed.");
             });
 
+            ////////////////////////////////////////////////////////////////////////////////
+            //Return multiple values from Async method
+            var result = await GetMultipleReturnValue(1);
+            int a = result.Item1;
+            string b = result.Item2;
+
+
             st.Stop();
             Console.WriteLine($"Total Time Elapsed :{st.ElapsedMilliseconds}");
             Console.ReadLine();
@@ -100,5 +107,15 @@ namespace TaskLibrery_Implementation
             Console.WriteLine("FastRunningFunction Finished!!!");
             return 3;
         }
+
+        //Return multiple values from Async method
+        public async Task<(int,string)> GetMultipleReturnValue(int a)
+        {           
+            int taskId = 10;
+            string taskType = "returnTypes";
+           
+            return (taskId, taskType);
+        }
+
     }
 }
