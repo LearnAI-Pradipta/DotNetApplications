@@ -68,7 +68,7 @@ namespace TaskLibrery_Implementation
         public int LongRunningFunction()
         {
             // A Long running function
-            Thread.Sleep(5000);
+            Task.Delay(5000);
             Console.WriteLine("LongRunningFunction Finished!!!");
             return 1;
         }
@@ -76,7 +76,7 @@ namespace TaskLibrery_Implementation
         public int ShortRunningFunction()
         {
             // A Short running function
-            Thread.Sleep(2000);
+            Task.Delay(2000);
             Console.WriteLine("ShortRunningFunction Finished!!!");
             return 2;
         }

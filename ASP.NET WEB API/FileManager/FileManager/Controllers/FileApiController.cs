@@ -9,7 +9,7 @@ namespace FileManager.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize]
+    //[Authorize]
     public class FileApiController : ControllerBase
     { 
         private readonly IDbFileApiRepository _dbFileApiRepository;
